@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 import "./globals.css";
 import RootShell from "@/components/RootShell";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
@@ -16,9 +17,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl" className={tajawal.variable}>
+    <html lang="ar" dir="rtl" className={tajawal.variable} suppressHydrationWarning>
       <body className="min-h-screen bg-sys text-label">
-        <RootShell>{children}</RootShell>
+        <ThemeProvider>
+          <RootShell>{children}</RootShell>
+        </ThemeProvider>
       </body>
     </html>
   );
