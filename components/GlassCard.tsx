@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import type { HTMLMotionProps } from "framer-motion";
 import clsx from "clsx";
 
-type GlassCardProps = PropsWithChildren<ComponentPropsWithoutRef<"div">> & {
+type GlassCardProps = HTMLMotionProps<"div"> & {
   withPadding?: boolean;
 };
 
