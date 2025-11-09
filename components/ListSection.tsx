@@ -11,12 +11,8 @@ type ListSectionProps = PropsWithChildren<{
 export function ListSection({ title, className, children }: ListSectionProps) {
   return (
     <section className={clsx("space-y-3", className)}>
-      {title && (
-        <h2 className="px-2 text-sm font-semibold uppercase tracking-[0.32em] text-[rgba(var(--label),0.55)]">
-          {title}
-        </h2>
-      )}
-      <div className="overflow-hidden rounded-[24px] border border-[rgba(var(--border),0.35)] bg-[rgba(var(--card),0.65)] shadow-[0_24px_45px_rgba(var(--shadow),0.18)] backdrop-blur-[22px]">
+      {title && <h2 className="text-sm font-medium uppercase tracking-[0.3em] text-white/60">{title}</h2>}
+      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl">
         {children}
       </div>
     </section>
@@ -39,26 +35,22 @@ export function ListCell({
   onClick,
   as: Component = "div"
 }: ListCellProps) {
+  const baseClasses = "flex w-full items-center gap-4 px-5 py-4 text-right transition";
   const content = (
     <>
-      <div className="flex flex-1 flex-col gap-1">
-        <span
-          className={clsx(
-            "text-base font-semibold leading-6",
-            destructive ? "text-red-400" : "text-label"
-          )}
-        >
+      <div className="flex flex-1 flex-col gap-1 text-white">
+        <span className={clsx("text-base font-semibold leading-6", destructive ? "text-red-300" : "text-white")}>
           {children}
         </span>
-        {hint && <span className="text-xs text-[rgba(var(--label),0.6)]">{hint}</span>}
+        {hint && <span className="text-xs text-white/60">{hint}</span>}
       </div>
       {detail && (
         <span
           className={clsx(
-            "rounded-full border border-[rgba(var(--border),0.35)] px-3 py-1 text-xs font-semibold",
+            "rounded-2xl border px-3 py-1 text-xs font-semibold",
             destructive
-              ? "border-red-400/60 bg-[rgba(248,113,113,0.1)] text-red-400"
-              : "bg-[rgba(var(--card-elevated),0.7)] text-[rgba(var(--label),0.75)]"
+              ? "border-red-400/40 bg-red-400/10 text-red-200"
+              : "border-white/10 bg-white/10 text-white/80"
           )}
         >
           {detail}
@@ -73,10 +65,8 @@ export function ListCell({
         type="button"
         onClick={onClick}
         className={clsx(
-          "flex w-full items-center gap-4 px-5 py-4 text-right transition-all duration-300",
-          destructive
-            ? "bg-[rgba(248,113,113,0.08)] text-red-400 hover:bg-[rgba(248,113,113,0.12)]"
-            : "bg-transparent text-label hover:bg-[rgba(var(--card-elevated),0.7)]"
+          baseClasses,
+          destructive ? "bg-red-500/5 text-red-200 hover:bg-red-500/10" : "hover:bg-white/5"
         )}
       >
         {content}
@@ -84,10 +74,6 @@ export function ListCell({
     );
   }
 
-  return (
-    <div className="flex items-center gap-4 px-5 py-4 text-right transition-colors duration-300 hover:bg-[rgba(var(--card-elevated),0.55)]">
-      {content}
-    </div>
-  );
+  return <div className={clsx(baseClasses, "hover:bg-white/5")}>{content}</div>;
 }
 

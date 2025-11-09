@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" className={tajawal.variable} suppressHydrationWarning>
-      <body className="min-h-screen bg-sys text-label">
+      <body className="min-h-screen font-sans antialiased">
         <ThemeProvider>
           <RootShell>{children}</RootShell>
         </ThemeProvider>
