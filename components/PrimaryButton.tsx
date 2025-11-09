@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ButtonHTMLAttributes } from "react";
+import type { HTMLMotionProps } from "framer-motion";
 import clsx from "clsx";
 
-type PrimaryButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type PrimaryButtonProps = HTMLMotionProps<"button"> & {
   loading?: boolean;
 };
 
