@@ -30,24 +30,24 @@ export default function ConfirmSheet({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(6,11,25,0.45)] backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm"
         >
           <motion.div
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 80, opacity: 0 }}
             transition={{ type: "spring", damping: 24, stiffness: 280 }}
-            className="glass-card w-full max-w-[420px] rounded-t-[32px] border-transparent bg-[rgba(var(--card-elevated),0.9)] px-7 pb-8 pt-7 shadow-[0_28px_60px_rgba(var(--shadow),0.24)]"
+            className="w-full max-w-[420px] rounded-t-3xl border border-white/10 bg-white/10 px-6 pb-8 pt-6 backdrop-blur-2xl"
           >
-            <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-[rgba(255,255,255,0.35)] dark:bg-[rgba(255,255,255,0.2)]" />
-            <h3 className="mb-2 text-lg font-semibold text-label">{title}</h3>
-            {description && <p className="mb-6 text-sm text-[rgba(var(--label),0.65)]">{description}</p>}
-            <div className="flex flex-col gap-3">
+            <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-white/40" />
+            <h3 className="text-lg font-semibold text-white">{title}</h3>
+            {description && <p className="mt-2 text-sm text-white/70">{description}</p>}
+            <div className="mt-6 flex flex-col gap-3">
               <PrimaryButton onClick={onConfirm}>{confirmText}</PrimaryButton>
               <button
                 type="button"
                 onClick={onCancel}
-                className="rounded-full bg-[rgba(var(--card),0.72)] px-4 py-3 text-sm font-semibold text-red-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] transition duration-300 hover:bg-[rgba(var(--card-elevated),0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(248,113,113,0.35)] focus-visible:ring-offset-0 dark:text-red-300"
+                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
               >
                 {cancelText}
               </button>

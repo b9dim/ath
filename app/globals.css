@@ -49,26 +49,13 @@ html {
 }
 
 body {
-  @apply bg-sys text-label antialiased transition-colors duration-500;
+  @apply antialiased transition-colors duration-500;
   min-height: 100vh;
   position: relative;
   z-index: 0;
-  background-color: rgb(var(--bg));
-  background-image: var(--bg-gradient);
-  background-attachment: fixed;
+  background-color: #05091e;
+  background-image: none;
   overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: -20%;
-  z-index: -1;
-  pointer-events: none;
-  background: var(--overlay-gradient);
-  filter: blur(80px);
-  opacity: 0.75;
-  transform: translateZ(0);
 }
 
 ::selection {
@@ -82,15 +69,6 @@ a {
 }
 
 @layer components {
-  .glass-card {
-    background: rgb(var(--card) / 0.72);
-    border: 1px solid rgb(var(--border) / 0.35);
-    box-shadow: 0 18px 36px rgba(var(--shadow) / 0.12);
-    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
-    backdrop-filter: blur(22px) saturate(150%);
-    border-radius: 28px;
-  }
-
   .hairline-divider {
     position: relative;
   }
@@ -100,8 +78,8 @@ a {
     position: absolute;
     inset-inline: 16px;
     bottom: 0;
-    height: 0.5px;
-    background: rgba(var(--separator));
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
   }
 }
 
@@ -112,11 +90,11 @@ a {
   h4,
   h5,
   h6 {
-    @apply text-label;
+    @apply text-white;
   }
 
   label {
-    @apply text-sm font-medium;
+    @apply text-sm font-medium text-white;
   }
 
   input,

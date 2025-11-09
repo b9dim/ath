@@ -20,9 +20,8 @@ export default function ThemeToggle({ className }: { className?: string }) {
       aria-label={theme === "dark" ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
       whileTap={{ scale: 0.94 }}
       className={clsx(
-        "relative flex h-11 w-20 items-center rounded-full border border-[rgba(var(--border),0.45)] bg-[rgba(var(--card),0.56)] px-1.5 transition-all",
-        "shadow-[inset_0_1px_0_rgba(255,255,255,0.28),0_14px_30px_rgba(var(--shadow),0.22)]",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(var(--tint),0.45)] focus-visible:ring-offset-0",
+        "relative flex h-10 w-20 items-center rounded-2xl border border-white/15 bg-white/10 px-1.5 text-white transition",
+        "backdrop-blur-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
         !isReady && "pointer-events-none opacity-0",
         className
       )}
@@ -30,11 +29,11 @@ export default function ThemeToggle({ className }: { className?: string }) {
       <motion.span
         layout
         transition={spring}
-        className="flex h-8 w-8 items-center justify-center rounded-full bg-[linear-gradient(145deg,rgba(255,255,255,0.9),rgba(255,255,255,0.55))] text-sm text-label shadow-[0_12px_24px_rgba(var(--shadow),0.22)]"
+        className="flex h-7 w-7 items-center justify-center rounded-2xl bg-white text-xs text-slate-900 shadow-lg"
       >
         {theme === "dark" ? <MoonIcon /> : <SunIcon />}
       </motion.span>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-4 text-xs font-semibold uppercase tracking-[0.08em] text-[rgba(var(--label),0.6)]">
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-3 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/70">
         <span>نهار</span>
         <span>ليل</span>
       </div>
