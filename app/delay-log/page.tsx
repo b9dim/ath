@@ -29,24 +29,38 @@ export default function DelayLogPage() {
 
   return (
     <>
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.32em] text-slabel">السجلات</p>
-          <h1 className="text-4xl font-bold">سجل التأخير</h1>
-          <p className="text-sm text-slabel">راجع إجمالي التأخير اليومي وسجل حضورك المحفوظ محليًا.</p>
-        </div>
-
-        <GlassCard className={hasFullDayDelay ? "border-red-400/30 bg-red-50/40" : undefined}>
-          <div className="space-y-4">
-            <div>
-              <span className="text-sm text-slabel">إجمالي التأخير</span>
-              <h2 className="text-3xl font-bold text-label">{formatDelay(totalDelay)}</h2>
-            </div>
-            <PrimaryButton type="button" onClick={() => setShowSheet(true)} disabled={!hasEntries}>
-              مسح السجل
-            </PrimaryButton>
+      <div className="space-y-8">
+        <section className="relative overflow-hidden rounded-[30px] border border-[rgba(var(--border),0.3)] bg-[linear-gradient(160deg,rgba(var(--card),0.85)_0%,rgba(var(--card-elevated),0.6)_100%)] px-7 py-8 shadow-[0_30px_60px_rgba(var(--shadow),0.22)]">
+          <div className="absolute inset-0">
+            <div className="absolute -left-10 top-10 h-24 w-24 rounded-full bg-[rgba(118,102,255,0.32)] blur-3xl" />
+            <div className="absolute -right-12 -top-8 h-40 w-40 rounded-full bg-[rgba(99,205,255,0.2)] blur-3xl" />
           </div>
-        </GlassCard>
+          <div className="relative space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(var(--border),0.45)] bg-[rgba(var(--card),0.65)] px-4 py-1 text-xs font-semibold text-[rgba(var(--label),0.68)] backdrop-blur-2xl">
+              السجلات المحفوظة
+            </div>
+            <div className="space-y-2">
+              <h1 className="text-3xl font-black text-label">سجل التأخير</h1>
+              <p className="text-sm text-[rgba(var(--label),0.68)]">
+                تابع الأرشيف المحلي لكل تسجيل. لا يتم رفع بياناتك لأي خادم.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
+              <div className="glass-card flex flex-col gap-2 rounded-[24px] border border-[rgba(var(--border),0.4)] bg-[rgba(var(--card),0.78)] px-5 py-4 shadow-[0_22px_40px_rgba(var(--shadow),0.18)]">
+                <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[rgba(var(--label),0.55)]">
+                  إجمالي التأخير
+                </span>
+                <span className="text-3xl font-black text-label">{formatDelay(totalDelay)}</span>
+                <p className="text-xs text-[rgba(var(--label),0.62)]">تراكم جميع الدقائق المسجلة حتى الآن.</p>
+              </div>
+              <div className="flex items-end">
+                <PrimaryButton type="button" onClick={() => setShowSheet(true)} disabled={!hasEntries}>
+                  مسح السجل بالكامل
+                </PrimaryButton>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div className="space-y-4">
           <AnimatePresence initial={false}>
@@ -54,16 +68,13 @@ export default function DelayLogPage() {
               groupedEntries.map(([date, items]) => (
                 <motion.div
                   key={date}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
+                  exit={{ opacity: 0, y: 10 }}
                 >
                   <ListSection title={date}>
                     {items.map((entry, index) => (
-                      <div
-                        key={entry.id}
-                        className={index !== items.length - 1 ? "hairline-divider" : undefined}
-                      >
+                      <div key={entry.id} className={index !== items.length - 1 ? "hairline-divider" : undefined}>
                         <ListCell
                           hint={`الوصول: ${entry.arrivalTime}`}
                           detail={formatDelay(entry.delayMinutes)}
@@ -84,9 +95,9 @@ export default function DelayLogPage() {
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="rounded-ios bg-white/60 px-6 py-10 text-center text-sm text-slabel shadow-inner shadow-white/50"
+                className="rounded-[26px] border border-dashed border-[rgba(var(--border),0.45)] bg-[rgba(var(--card),0.4)] px-6 py-10 text-center text-sm text-[rgba(var(--label),0.62)] shadow-[0_20px_50px_rgba(var(--shadow),0.12)]"
               >
-                لا توجد سجلات محفوظة حتى الآن. قم بحساب التأخير في الصفحة الرئيسية وسيتم حفظ النتيجة هنا.
+                لا توجد سجلات محفوظة حتى الآن. قم بحساب التأخير في الصفحة الرئيسية وسيضاف آخر تسجيل هنا تلقائيًا.
               </motion.div>
             )}
           </AnimatePresence>
