@@ -75,9 +75,9 @@ export default function HomePage() {
   return (
     <div className="space-y-6">
       <section className="space-y-3 text-center">
-        <span className="text-sm uppercase tracking-[0.3em] text-white/60">متتبع الوقت الذكي</span>
-        <h1 className="text-xl font-semibold tracking-tight">حافظ على انتظام حضورك</h1>
-        <p className="text-sm leading-6 text-white/70">
+        <span className="text-sm font-medium text-[#078477]">متتبع الوقت الذكي</span>
+        <h1 className="text-2xl font-semibold text-[#2F3E3A]">حافظ على انتظام حضورك</h1>
+        <p className="text-sm leading-6 text-[#4C5A56]">
           احسب فرق الوصول عن وقت الحضور الرسمي 07:15 صباحًا، وسجل كل نتيجة ليبقى أداؤك تحت السيطرة.
         </p>
       </section>
@@ -85,22 +85,23 @@ export default function HomePage() {
       <GlassCard>
         <form className="space-y-5" onSubmit={handleSubmit}>
           <div className="space-y-3">
-            <label htmlFor="arrival-time" className="flex items-center justify-between text-sm text-white/70">
-              <span>وقت الحضور</span>
-              <span className="text-xs">07:15 هو الحد الرسمي</span>
+            <label htmlFor="arrival-time" className="flex items-center justify-between text-sm text-[#4C5A56]">
+              <span className="font-semibold text-[#2F3E3A]">وقت الحضور</span>
+              <span className="text-xs text-[#6B7B76]">07:15 هو الحد الرسمي</span>
             </label>
             <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-base text-white/60">🕘</div>
+              <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-lg text-[#078477]">🕘</div>
               <input
                 id="arrival-time"
                 type="time"
                 required
                 value={arrivalTime}
                 onChange={(event) => setArrivalTime(event.target.value)}
-                className="w-full rounded-2xl border border-white/15 bg-white/5 px-12 py-3 text-sm text-white shadow-[0_12px_30px_rgba(8,13,30,0.25)] outline-none transition focus:border-white/30 focus:ring-2 focus:ring-white/20"
+                dir="ltr"
+                className="w-full appearance-none rounded-2xl border border-[#C1D4CF] bg-white pr-12 pl-4 py-3 text-left text-base text-[#2F3E3A] shadow-[0_12px_24px_rgba(7,132,119,0.12)] transition focus:border-[#078477] focus:ring-2 focus:ring-[#078477]/25"
               />
             </div>
-            <p className="text-xs text-white/60">
+            <p className="text-xs text-[#6B7B76]">
               أدخل وقت الوصول الفعلي للتعرف على مقدار التأخير أو التأكد من انضباطك.
             </p>
           </div>
@@ -124,20 +125,18 @@ export default function HomePage() {
                 "space-y-3 text-center",
                 isDelayed
                   ? isFullDayResult
-                    ? "border-red-400/30 bg-gradient-to-b from-red-500/25 via-red-500/15 to-red-500/10"
-                    : "border-orange-400/25 bg-gradient-to-b from-orange-500/25 via-orange-500/15 to-orange-500/10"
-                  : "border-emerald-400/25 bg-gradient-to-b from-emerald-400/25 via-emerald-400/15 to-emerald-400/10"
+                    ? "border-[#B4AD9A] bg-gradient-to-b from-[#B4AD9A]/30 via-[#B4AD9A]/20 to-[#B4AD9A]/10"
+                    : "border-[#B4AD9A] bg-gradient-to-b from-[#B4AD9A]/25 via-[#B4AD9A]/15 to-[#B4AD9A]/8"
+                  : "border-[#078477] bg-gradient-to-b from-[#078477]/20 via-[#078477]/12 to-[#078477]/6"
               )}
             >
-              <p className="text-sm text-white/70">
-                النتيجة لوقت الحضور <span className="font-semibold text-white">{result.arrivalTime}</span>
+              <p className="text-sm text-[#4C5A56]">
+                النتيجة لوقت الحضور <span className="font-semibold text-[#2F3E3A]">{result.arrivalTime}</span>
               </p>
               {isDelayed ? (
                 <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tight">
-                    التأخير: {formatDelay(result.delayMinutes)}
-                  </h2>
-                  <p className="text-sm text-white/70">
+                  <h2 className="text-3xl font-bold text-[#2F3E3A]">التأخير: {formatDelay(result.delayMinutes)}</h2>
+                  <p className="text-sm text-[#4C5A56]">
                     {isFullDayResult
                       ? "تم تسجيل تأخير يعادل يوم عمل كامل (420 دقيقة أو أكثر). يرجى متابعة الإجراءات المتبعة في جهتك."
                       : "قم بتسجيل التأخير لتتعامل معه لاحقًا وتفادي تكراره."}
@@ -145,8 +144,8 @@ export default function HomePage() {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  <h2 className="text-3xl font-bold tracking-tight">لا يوجد تأخير 🎉</h2>
-                  <p className="text-sm text-white/70">
+                  <h2 className="text-3xl font-bold text-[#078477]">لا يوجد تأخير 🎉</h2>
+                  <p className="text-sm text-[#4C5A56]">
                     ممتاز! حضورك في الوقت المحدد يضمن لك بداية يوم منتجة.
                   </p>
                 </div>

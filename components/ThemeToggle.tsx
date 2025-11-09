@@ -33,7 +33,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       >
         {theme === "dark" ? <MoonIcon /> : <SunIcon />}
       </motion.span>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-3 text-[10px] font-semibold uppercase tracking-[0.08em] text-white/70">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-3 text-[10px] font-semibold uppercase text-white/70">
         <span>نهار</span>
         <span>ليل</span>
       </div>

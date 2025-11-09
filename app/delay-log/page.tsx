@@ -31,21 +31,21 @@ export default function DelayLogPage() {
     <>
       <div className="space-y-6">
         <section className="space-y-3 text-center">
-          <span className="text-sm uppercase tracking-[0.3em] text-white/60">السجلات المحفوظة</span>
-          <h1 className="text-xl font-semibold tracking-tight">سجل التأخير</h1>
-          <p className="text-sm text-white/70">
+          <span className="text-sm font-medium text-[#078477]">السجلات المحفوظة</span>
+          <h1 className="text-2xl font-semibold text-[#2F3E3A]">سجل التأخير</h1>
+          <p className="text-sm text-[#4C5A56]">
             تابع الأرشيف المحلي لكل تسجيل. لا يتم رفع بياناتك لأي خادم.
           </p>
         </section>
 
         <GlassCard className="space-y-4">
           <div className="space-y-2 text-center">
-            <div className="text-sm text-white/70">إجمالي التأخير</div>
-            <div className="text-3xl font-bold tracking-tight">{formatDelay(totalDelay)}</div>
-            <p className="text-xs text-white/60">تراكم جميع الدقائق المسجلة حتى الآن.</p>
+            <div className="text-sm text-[#4C5A56]">إجمالي التأخير</div>
+            <div className="text-3xl font-bold text-[#2F3E3A]">{formatDelay(totalDelay)}</div>
+            <p className="text-xs text-[#6B7B76]">تراكم جميع الدقائق المسجلة حتى الآن.</p>
           </div>
           {hasFullDayDelay && (
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-xs text-white/70">
+            <div className="rounded-2xl border border-[#B4AD9A] bg-[#B4AD9A]/20 p-3 text-xs text-[#2F3E3A]">
               يوجد تأخير يعادل يوم عمل كامل ضمن السجلات، تأكد من متابعة الإجراءات الخاصة به.
             </div>
           )}
@@ -86,7 +86,7 @@ export default function DelayLogPage() {
             <motion.div
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-3xl border border-dashed border-white/20 bg-white/5 p-6 text-center text-sm text-white/70 backdrop-blur-2xl"
+              className="rounded-3xl border border-dashed border-[#C1D4CF] bg-white p-6 text-center text-sm text-[#4C5A56] shadow-[0_16px_40px_rgba(7,132,119,0.08)]"
             >
               لا توجد سجلات محفوظة حتى الآن. قم بحساب التأخير في الصفحة الرئيسية وسيضاف آخر تسجيل هنا تلقائيًا.
             </motion.div>

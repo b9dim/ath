@@ -11,8 +11,8 @@ type ListSectionProps = PropsWithChildren<{
 export function ListSection({ title, className, children }: ListSectionProps) {
   return (
     <section className={clsx("space-y-3", className)}>
-      {title && <h2 className="text-sm font-medium uppercase tracking-[0.3em] text-white/60">{title}</h2>}
-      <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/10 backdrop-blur-2xl">
+      {title && <h2 className="text-sm font-medium uppercase text-[#078477]">{title}</h2>}
+      <div className="overflow-hidden rounded-3xl border border-[#C1D4CF] bg-white shadow-[0_16px_40px_rgba(7,132,119,0.08)]">
         {children}
       </div>
     </section>
@@ -38,19 +38,21 @@ export function ListCell({
   const baseClasses = "flex w-full items-center gap-4 px-5 py-4 text-right transition";
   const content = (
     <>
-      <div className="flex flex-1 flex-col gap-1 text-white">
-        <span className={clsx("text-base font-semibold leading-6", destructive ? "text-red-300" : "text-white")}>
+      <div className="flex flex-1 flex-col gap-1 text-[#2F3E3A]">
+        <span
+          className={clsx("text-base font-semibold leading-6", destructive ? "text-[#B4AD9A]" : "text-[#2F3E3A]")}
+        >
           {children}
         </span>
-        {hint && <span className="text-xs text-white/60">{hint}</span>}
+        {hint && <span className="text-xs text-[#6B7B76]">{hint}</span>}
       </div>
       {detail && (
         <span
           className={clsx(
             "rounded-2xl border px-3 py-1 text-xs font-semibold",
             destructive
-              ? "border-red-400/40 bg-red-400/10 text-red-200"
-              : "border-white/10 bg-white/10 text-white/80"
+              ? "border-[#B4AD9A] bg-[#B4AD9A]/20 text-[#2F3E3A]"
+              : "border-[#078477] bg-[#078477]/10 text-[#078477]"
           )}
         >
           {detail}
@@ -66,7 +68,7 @@ export function ListCell({
         onClick={onClick}
         className={clsx(
           baseClasses,
-          destructive ? "bg-red-500/5 text-red-200 hover:bg-red-500/10" : "hover:bg-white/5"
+          destructive ? "bg-[#B4AD9A]/20 text-[#2F3E3A] hover:bg-[#B4AD9A]/30" : "hover:bg-[#C1D4CF]/40"
         )}
       >
         {content}
@@ -74,6 +76,6 @@ export function ListCell({
     );
   }
 
-  return <div className={clsx(baseClasses, "hover:bg-white/5")}>{content}</div>;
+  return <div className={clsx(baseClasses, "hover:bg-[#C1D4CF]/40")}>{content}</div>;
 }
 

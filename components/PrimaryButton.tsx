@@ -17,9 +17,9 @@ const PrimaryButton = forwardRef<HTMLButtonElement, PrimaryButtonProps>(
       ref={ref}
       whileTap={{ scale: 0.96 }}
       className={clsx(
-        "group flex w-full items-center justify-center rounded-2xl bg-white/10 px-4 py-3 text-sm font-semibold text-white transition",
-        "hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
-        (disabled || loading) && "cursor-not-allowed opacity-60",
+        "group flex w-full items-center justify-center rounded-2xl bg-[#078477] px-4 py-3 text-sm font-semibold text-white transition",
+        "hover:bg-[#056B62] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#078477]/30",
+        (disabled || loading) && "cursor-not-allowed opacity-70",
         className
       )}
       disabled={disabled || loading}

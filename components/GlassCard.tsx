@@ -19,7 +19,7 @@ const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       className={clsx(
-        "w-full rounded-3xl border border-white/10 bg-gradient-to-b from-white/15 via-white/10 to-white/5 backdrop-blur-2xl shadow-[0_24px_60px_rgba(6,13,35,0.35)] text-white",
+        "w-full rounded-3xl border border-[#C1D4CF] bg-gradient-to-b from-white to-[#C1D4CF]/40 text-[#2F3E3A] shadow-[0_24px_60px_rgba(7,132,119,0.15)] backdrop-blur-sm",
         withPadding && "p-5",
         className
       )}
