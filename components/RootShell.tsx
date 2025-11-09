@@ -9,8 +9,8 @@ export default function RootShell({ children }: PropsWithChildren) {
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1A2BF1] via-[#2433EF] to-[#0C0F31] text-white">
-      <div className="max-w-[420px] mx-auto px-4 py-8 space-y-6">
+    <div className="min-h-screen bg-gradient-to-b from-[#F5F5F5] via-[#C1D4CF] to-[#B4AD9A] text-[#2F3E3A]">
+      <div className="mx-auto flex min-h-screen w-full max-w-[420px] flex-col gap-6 px-4 py-8">
         <Navbar />
         <AnimatePresence mode="wait">
           <motion.main
@@ -19,7 +19,7 @@ export default function RootShell({ children }: PropsWithChildren) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.24, ease: "easeOut" }}
-            className="space-y-6"
+            className="flex flex-1 flex-col gap-6 pb-8"
           >
             {children}
           </motion.main>

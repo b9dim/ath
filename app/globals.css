@@ -4,47 +4,18 @@
 
 :root {
   color-scheme: light;
-  --bg: 242 246 255;
-  --bg-alt: 225 234 255;
-  --card: 255 255 255;
-  --card-elevated: 244 246 255;
-  --border: 190 198 231;
-  --label: 16 24 52;
-  --slabel: 98 110 144;
-  --separator: 136 148 182 / 0.22;
-  --tint: 93 109 255;
-  --shadow: 15 23 42;
-  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.92), rgba(222, 232, 255, 0)),
-    radial-gradient(circle at 85% 10%, rgba(195, 210, 255, 0.65), rgba(224, 235, 255, 0)),
-    radial-gradient(circle at 50% 100%, rgba(190, 220, 255, 0.5), rgba(255, 255, 255, 0));
-  --overlay-gradient: radial-gradient(circle at 10% 20%, rgba(147, 170, 255, 0.3), transparent 60%),
-    radial-gradient(circle at 80% 18%, rgba(99, 205, 255, 0.2), transparent 55%),
-    radial-gradient(circle at 50% 100%, rgba(144, 205, 255, 0.14), transparent 60%);
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: 13 16 28;
-  --bg-alt: 24 28 44;
-  --card: 26 31 50;
-  --card-elevated: 34 38 60;
-  --border: 74 82 120;
-  --label: 232 236 255;
-  --slabel: 166 177 207;
-  --separator: 110 120 158 / 0.28;
-  --tint: 134 122 255;
-  --shadow: 5 9 20;
-  --bg-gradient: radial-gradient(circle at 20% 15%, rgba(43, 57, 144, 0.35), rgba(6, 9, 20, 0)),
-    radial-gradient(circle at 80% 10%, rgba(94, 53, 190, 0.3), rgba(6, 9, 20, 0)),
-    radial-gradient(circle at 50% 100%, rgba(34, 86, 160, 0.28), rgba(6, 9, 20, 0));
-  --overlay-gradient: radial-gradient(circle at 12% 18%, rgba(129, 99, 255, 0.28), transparent 60%),
-    radial-gradient(circle at 82% 12%, rgba(60, 178, 255, 0.26), transparent 55%),
-    radial-gradient(circle at 45% 100%, rgba(164, 76, 255, 0.26), transparent 60%);
+  --color-primary: 7 132 119;
+  --color-secondary: 180 173 154;
+  --color-accent: 193 212 207;
+  --color-surface: 255 255 255;
+  --color-background: 245 245 245;
+  --color-ink: 47 62 58;
+  --color-muted: 107 123 118;
 }
 
 html {
-  background: rgb(var(--bg));
-  color: rgb(var(--label));
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-ink));
   scroll-behavior: smooth;
 }
 
@@ -53,14 +24,13 @@ body {
   min-height: 100vh;
   position: relative;
   z-index: 0;
-  background-color: #05091e;
-  background-image: none;
+  background-color: rgb(var(--color-background));
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgb(var(--tint) / 0.25);
-  color: rgb(var(--label));
+  background: rgba(7, 132, 119, 0.18);
+  color: rgb(var(--color-ink));
 }
 
 a {
@@ -79,24 +49,11 @@ a {
     inset-inline: 16px;
     bottom: 0;
     height: 1px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(var(--color-accent), 0.65);
   }
 }
 
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply text-white;
-  }
-
-  label {
-    @apply text-sm font-medium text-white;
-  }
-
   input,
   button {
     @apply focus:outline-none;
@@ -105,9 +62,9 @@ a {
 
 @layer utilities {
   .bg-glass {
-    background: rgb(var(--card) / 0.66);
-    border: 1px solid rgb(var(--border) / 0.35);
-    backdrop-filter: blur(28px) saturate(160%);
+    background: rgba(var(--color-surface), 0.85);
+    border: 1px solid rgba(var(--color-accent), 0.55);
+    backdrop-filter: blur(18px);
   }
 
   .fade-border {
@@ -119,7 +76,7 @@ a {
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    border: 1px solid rgba(var(--tint), 0.08);
+    border: 1px solid rgba(var(--color-primary), 0.18);
     pointer-events: none;
   }
 }
