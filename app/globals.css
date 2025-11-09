@@ -3,25 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --bg: 255 255 255;
-  --card: 248 248 250;
-  --label: 17 17 17;
-  --slabel: 60 60 67;
-  --separator: 60 60 67 / 0.16;
-  --tint: 0 122 255;
+  color-scheme: light;
+  --bg: 242 246 255;
+  --bg-alt: 225 234 255;
+  --card: 255 255 255;
+  --card-elevated: 244 246 255;
+  --border: 190 198 231;
+  --label: 16 24 52;
+  --slabel: 98 110 144;
+  --separator: 136 148 182 / 0.22;
+  --tint: 93 109 255;
+  --shadow: 15 23 42;
+  --bg-gradient: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.92), rgba(222, 232, 255, 0)),
+    radial-gradient(circle at 85% 10%, rgba(195, 210, 255, 0.65), rgba(224, 235, 255, 0)),
+    radial-gradient(circle at 50% 100%, rgba(190, 220, 255, 0.5), rgba(255, 255, 255, 0));
+  --overlay-gradient: radial-gradient(circle at 10% 20%, rgba(147, 170, 255, 0.3), transparent 60%),
+    radial-gradient(circle at 80% 18%, rgba(99, 205, 255, 0.2), transparent 55%),
+    radial-gradient(circle at 50% 100%, rgba(144, 205, 255, 0.14), transparent 60%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: 13 16 28;
+  --bg-alt: 24 28 44;
+  --card: 26 31 50;
+  --card-elevated: 34 38 60;
+  --border: 74 82 120;
+  --label: 232 236 255;
+  --slabel: 166 177 207;
+  --separator: 110 120 158 / 0.28;
+  --tint: 134 122 255;
+  --shadow: 5 9 20;
+  --bg-gradient: radial-gradient(circle at 20% 15%, rgba(43, 57, 144, 0.35), rgba(6, 9, 20, 0)),
+    radial-gradient(circle at 80% 10%, rgba(94, 53, 190, 0.3), rgba(6, 9, 20, 0)),
+    radial-gradient(circle at 50% 100%, rgba(34, 86, 160, 0.28), rgba(6, 9, 20, 0));
+  --overlay-gradient: radial-gradient(circle at 12% 18%, rgba(129, 99, 255, 0.28), transparent 60%),
+    radial-gradient(circle at 82% 12%, rgba(60, 178, 255, 0.26), transparent 55%),
+    radial-gradient(circle at 45% 100%, rgba(164, 76, 255, 0.26), transparent 60%);
 }
 
 html {
   background: rgb(var(--bg));
   color: rgb(var(--label));
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-sys text-label antialiased;
+  @apply bg-sys text-label antialiased transition-colors duration-500;
   min-height: 100vh;
-  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9), rgba(230, 230, 235, 0.4)),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.8), rgba(220, 220, 230, 0.3));
+  position: relative;
+  z-index: 0;
+  background-color: rgb(var(--bg));
+  background-image: var(--bg-gradient);
   background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--overlay-gradient);
+  filter: blur(80px);
+  opacity: 0.75;
+  transform: translateZ(0);
+}
+
+::selection {
+  background: rgb(var(--tint) / 0.25);
+  color: rgb(var(--label));
 }
 
 a {
@@ -46,6 +98,14 @@ a {
     height: 0.5px;
     background: rgba(var(--separator));
   }
+
+.glass-card {
+  background: rgb(var(--card) / 0.72);
+  border: 1px solid rgb(var(--border) / 0.35);
+  box-shadow: 0 18px 36px rgba(var(--shadow) / 0.12);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease;
+  backdrop-filter: blur(22px) saturate(150%);
+}
 }
 
 

@@ -30,16 +30,16 @@ export default function ConfirmSheet({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-end justify-center bg-[rgba(6,11,25,0.45)] backdrop-blur-sm"
         >
           <motion.div
             initial={{ y: 80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 80, opacity: 0 }}
             transition={{ type: "spring", damping: 24, stiffness: 280 }}
-            className="w-full max-w-[420px] rounded-t-ios-lg bg-white/70 px-6 pb-8 pt-6 shadow-lg backdrop-blur-xl backdrop-saturate-150"
+              className="glass-card w-full max-w-[420px] rounded-t-ios-lg border-transparent bg-[rgb(var(--card-elevated)/0.9)] px-7 pb-8 pt-7 shadow-[0_28px_60px_rgba(var(--shadow),0.24)]"
           >
-            <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-black/10" />
+              <div className="mx-auto mb-4 h-1 w-12 rounded-full bg-[rgba(255,255,255,0.35)] dark:bg-[rgba(255,255,255,0.2)]" />
             <h3 className="mb-2 text-lg font-semibold text-label">{title}</h3>
             {description && <p className="mb-6 text-sm text-slabel">{description}</p>}
             <div className="flex flex-col gap-3">
@@ -47,7 +47,7 @@ export default function ConfirmSheet({
               <button
                 type="button"
                 onClick={onCancel}
-                className="rounded-full bg-white/60 px-4 py-3 text-sm font-semibold text-red-500 shadow-inner shadow-white/40 transition hover:bg-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-200 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  className="rounded-full bg-[rgb(var(--card)/0.72)] px-4 py-3 text-sm font-semibold text-red-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.28)] transition duration-300 hover:bg-[rgb(var(--card-elevated)/0.85)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(248,113,113,0.35)] focus-visible:ring-offset-0 dark:text-red-300"
               >
                 {cancelText}
               </button>
