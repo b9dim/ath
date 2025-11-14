@@ -7,7 +7,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import ConfirmSheet from "@/components/ConfirmSheet";
 import { ListCell, ListSection } from "@/components/ListSection";
 import { useAttendanceLog } from "@/hooks/useAttendanceLog";
-import { formatDelay, isFullDayDelay } from "@/lib/time";
+import { FULL_DAY_DELAY_MINUTES, formatDelay, isFullDayDelay, remainingDelayToFullDay } from "@/lib/time";
 
 export default function DelayLogPage() {
   const { entries, totalDelay, clearEntries } = useAttendanceLog();
@@ -26,6 +26,9 @@ export default function DelayLogPage() {
 
   const hasEntries = entries.length > 0;
   const hasFullDayDelay = useMemo(() => entries.some((entry) => isFullDayDelay(entry.delayMinutes)), [entries]);
+  const totalIsFullDay = isFullDayDelay(totalDelay);
+  const remainingToFullDay = useMemo(() => remainingDelayToFullDay(totalDelay), [totalDelay]);
+  const showRemainingToFullDay = totalDelay > 0 && remainingToFullDay > 0;
 
   return (
     <>
@@ -43,6 +46,17 @@ export default function DelayLogPage() {
             <div className="text-sm text-[#4C5A56]">إجمالي التأخير</div>
             <div className="text-3xl font-bold text-[#2F3E3A]">{formatDelay(totalDelay)}</div>
             <p className="text-xs text-[#6B7B76]">تراكم جميع الدقائق المسجلة حتى الآن.</p>
+              {showRemainingToFullDay && (
+                <p className="text-xs text-[#4C5A56]">
+                  متبقٍ <span className="font-semibold text-[#2F3E3A]">{formatDelay(remainingToFullDay)}</span> للوصول إلى
+                  تأخير يوم كامل ({FULL_DAY_DELAY_MINUTES} دقيقة).
+                </p>
+              )}
+              {totalIsFullDay && (
+                <p className="text-xs font-semibold text-[#2F3E3A]">
+                  إجمالي التأخير الحالي بلغ أو تجاوز يوم عمل كامل، راجع الإجراءات المطلوبة.
+                </p>
+              )}
           </div>
           {hasFullDayDelay && (
             <div className="rounded-2xl border border-[#B4AD9A] bg-[#B4AD9A]/20 p-3 text-xs text-[#2F3E3A]">
