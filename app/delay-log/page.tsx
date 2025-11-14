@@ -7,7 +7,7 @@ import PrimaryButton from "@/components/PrimaryButton";
 import ConfirmSheet from "@/components/ConfirmSheet";
 import { ListCell, ListSection } from "@/components/ListSection";
 import { useAttendanceLog } from "@/hooks/useAttendanceLog";
-import { FULL_DAY_DELAY_MINUTES, formatDelay, isFullDayDelay, remainingDelayToFullDay } from "@/lib/time";
+import { formatDelay, isFullDayDelay, remainingDelayToFullDay } from "@/lib/time";
 
 export default function DelayLogPage() {
   const { entries, totalDelay, clearEntries } = useAttendanceLog();
@@ -32,24 +32,19 @@ export default function DelayLogPage() {
 
   return (
     <>
-      <div className="space-y-6">
-        <section className="space-y-3 text-center">
-          <span className="text-sm font-medium text-[#078477]">السجلات المحفوظة</span>
-          <h1 className="text-2xl font-semibold text-[#2F3E3A]">سجل التأخير</h1>
-          <p className="text-sm text-[#4C5A56]">
-            تابع الأرشيف المحلي لكل تسجيل. لا يتم رفع بياناتك لأي خادم.
-          </p>
-        </section>
+        <div className="space-y-6">
+          <section className="space-y-3 text-center">
+            <span className="text-sm font-medium text-[#078477]">السجلات المحفوظة</span>
+            <h1 className="text-2xl font-semibold text-[#2F3E3A]">سجل التأخير</h1>
+          </section>
 
-        <GlassCard className="space-y-4">
-          <div className="space-y-2 text-center">
-            <div className="text-sm text-[#4C5A56]">إجمالي التأخير</div>
-            <div className="text-3xl font-bold text-[#2F3E3A]">{formatDelay(totalDelay)}</div>
-            <p className="text-xs text-[#6B7B76]">تراكم جميع الدقائق المسجلة حتى الآن.</p>
+          <GlassCard className="space-y-4">
+            <div className="space-y-2 text-center">
+              <div className="text-sm text-[#4C5A56]">إجمالي دقائق التأخير</div>
+              <div className="text-3xl font-bold text-[#2F3E3A]">{Math.max(totalDelay, 0)} دقيقة</div>
               {showRemainingToFullDay && (
                 <p className="text-xs text-[#4C5A56]">
-                  متبقٍ <span className="font-semibold text-[#2F3E3A]">{formatDelay(remainingToFullDay)}</span> للوصول إلى
-                  تأخير يوم كامل ({FULL_DAY_DELAY_MINUTES} دقيقة).
+                  متبقٍ <span className="font-semibold text-[#2F3E3A]">{formatDelay(remainingToFullDay)}</span> لبلوغ تأخير يوم كامل.
                 </p>
               )}
               {totalIsFullDay && (
@@ -57,7 +52,7 @@ export default function DelayLogPage() {
                   إجمالي التأخير الحالي بلغ أو تجاوز يوم عمل كامل، راجع الإجراءات المطلوبة.
                 </p>
               )}
-          </div>
+            </div>
           {hasFullDayDelay && (
             <div className="rounded-2xl border border-[#B4AD9A] bg-[#B4AD9A]/20 p-3 text-xs text-[#2F3E3A]">
               يوجد تأخير يعادل يوم عمل كامل ضمن السجلات، تأكد من متابعة الإجراءات الخاصة به.
