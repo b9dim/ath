@@ -1,7 +1,9 @@
+export const FULL_DAY_DELAY_MINUTES = 420;
+
 export function formatDelay(minutes: number) {
   if (minutes <= 0) return "0 دقيقة";
-  if (minutes >= 420) {
-    if (minutes === 420) {
+  if (minutes >= FULL_DAY_DELAY_MINUTES) {
+    if (minutes === FULL_DAY_DELAY_MINUTES) {
       return "يوم عمل كامل (420 دقيقة)";
     }
     return `يوم عمل كامل (${minutes} دقيقة)`;
@@ -14,6 +16,13 @@ export function formatDelay(minutes: number) {
 }
 
 export function isFullDayDelay(minutes: number) {
-  return minutes >= 420;
+  return minutes >= FULL_DAY_DELAY_MINUTES;
+}
+
+export function remainingDelayToFullDay(minutes: number) {
+  if (minutes <= 0) {
+    return FULL_DAY_DELAY_MINUTES;
+  }
+  return Math.max(FULL_DAY_DELAY_MINUTES - minutes, 0);
 }
 
